@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+}
+
+.main-index {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-index form {
+    margin: 0 auto;
+    width: 15em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-index form input {
+    width: 10em;
+    box-shadow: -4px 10px 100px 46px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(163, 163, 163);
+}

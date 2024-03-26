@@ -36,19 +36,19 @@
             <div class="img-cadastro">
                 <img src="img/logoSemFundo2.png" alt="">
             </div>
-            <form action="cadastro.php" method="POST">
-                <label for="cNome">Digite seu nome:</label>
-                <input type="text" name="cNome" id="cNome" placeholder="Digite seu nome"/><br />
-                <label for="cEmail">Digite seu e-mail:</label>
-                <input type="text" name="cEmail" id="cEmail" placeholder="Digite seu e-mail"/><br>
-                <label for="cCpf">Digite seu CPF:</label>
-                <input type="text" name="cCpf" id="cCpf" placeholder="Digite seu CPF"/><br>
-                <label for="cIdade">Digite sua Idade:</label>
-                <input type="text" name="cIdade" id="cIdade" placeholder="Digite sua idade"/><br>
-                <label for="cEndereco">Digite seu endereço:</label>
-                <input type="text" name="cEndereco" id="cEndereco" placeholder="Digite seu endereço"/><br>
-                <label for="cSenha">Digite sua senha:</label>
-                <input type="password" name="cSenha" id="cSenha" placeholder="Digite sua senha"/><br>
+            <form action="cadastro_prod.php" method="POST">
+                <label for="cNome">Digite o nome do produto:</label>
+                <input type="text" name="cNome" id="cNome" placeholder="Digite seu nome" /><br />
+                <label for="cValor">Digite o valor do produto:</label>
+                <input type="text" name="cValor" id="cValor" placeholder="Digite seu e-mail" /><br>
+                <label for="cCategoria">Digite a categoria do produto:</label>
+                <input type="text" name="cCategoria" id="cCategoria" placeholder="Digite seu CPF" /><br>
+                <label for="cIngr">Digite os ingredientes do produto:</label>
+                <input type="text" name="cIngr" id="cIngr" placeholder="Digite sua idade" /><br>
+                <label for="cTamanho">Digite o tamanho do produto:</label>
+                <input type="text" name="cTamanho" id="cTamanho" placeholder="Digite seu endereço" /><br>
+                <label for="cBorda">Digite a borda do produto:</label>
+                <input type="text" name="cBorda" id="cBorda" placeholder="Digite sua senha" /><br>
                 <button type="submit" id="enviarDados">Cadastrar</button>
             </form>
         </div>

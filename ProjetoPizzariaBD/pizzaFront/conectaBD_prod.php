@@ -20,14 +20,14 @@ try {
     );
     echo "Conectado no banco de dados!!!";
     $sql = "CREATE TABLE IF NOT EXISTS 
-     clientes_pizzaria (
-        id_cliente SERIAL PRIMARY KEY,
-        nome_cliente VARCHAR(255),
-        endereco_cliente VARCHAR(255),
-        idade_cliente INT,
-        cpf_cliente VARCHAR(255),
-        email_cliente VARCHAR(255),
-        senha_cliente VARCHAR(255)
+     produtos_pizzaria (
+        id_produto SERIAL PRIMARY KEY,
+        nome_produto VARCHAR(255),
+        categoria_produto VARCHAR(255),
+        ingredientes VARCHAR(255),
+        valor_produto DECIMAL(7,2),
+        tamanho VARCHAR(255),
+        borda VARCHAR(255)
     )";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
