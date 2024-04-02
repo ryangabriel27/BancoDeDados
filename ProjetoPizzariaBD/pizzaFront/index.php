@@ -1,3 +1,7 @@
+<?php
+    include 'functions.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,34 +14,9 @@
 </head>
 
 <body>
-    <nav>
-        <header>
-            <div class="logo">
-                <img src="img/logoDouradaSemfundo.png" alt="">
-            </div>
-        </header>
-    </nav>
-    <section class="paginas">
-        <a href="cadastroProduto.php">
-            <div class="produtos">
-                <span>PRODUTOS</span>
-            </div>
-        </a>
-        <a href="cadastroClientes.php">
-            <div class="cadastro">
-                <span>CADASTRO</span>
-            </div>
-        </a>
-        <div class="carrinho">
-            <span>CARRINHO</span>
-        </div>
-    </section>
+    <?=header2()?>
     <div class="main-index">
-        <form action="pesquisaProduto.php" method="post">
-            <label for="pesquisaProd">Pesquise um produto:</label>
-            <input type="text" id="query">
-            <button type="submit">Buscar</button>
-        </form>
+        
     </div>
 </body>
 

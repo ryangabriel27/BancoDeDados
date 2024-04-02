@@ -31,7 +31,7 @@ header {
 
 .produtos,
 .cadastro,
-.carrinho {
+.pedido {
     background-color: rgb(39, 34, 24);
     width: 8em;
     height: 2em;
@@ -44,7 +44,7 @@ header {
 
 .produtos,
 .cadastro,
-.carrinho span {
+.pedido span {
     color: #D1B55E;
     font-family: "Inter", sans-serif;
     font-weight: 700;
@@ -53,65 +53,4 @@ header {
 
 .paginas a{
     text-decoration: none;
-}
-
-.main-cadastro {
-    display: flex;
-    justify-content: center;
-}
-
-.container-cadastro {
-    width: 80%;
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    background-color: rgb(235, 235, 235);
-    border-radius: 8px;
-    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.img-cadastro {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 6vh;
-}
-
-.img-cadastro img {
-    height: 100%;
-}
-
-form {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-form label {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-}
-
-form input {
-    border-radius: 4px;
-    border: 0;
-    height: 3vh;
-    font-family: "Nunito", sans-serif;
-    font-weight: 700;
-    padding: 0.2em 1em 0.2em;
-    color: rgb(63, 63, 63);
-}
-
-form button {
-    background-color: rgb(36, 33, 33);
-    color: #D1B55E;
-    border: 0;
-    width: 400px;
-    height: 50px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-family: "Inter", sans-serif;
-    font-weight: 600;
 }
