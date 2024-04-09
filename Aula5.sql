@@ -678,7 +678,8 @@ SELECT cli.nome,
        ven.duplic,
        ven.valor
 FROM cliente cli
-INNER JOIN venda ven ON cli.nome = 'PCTEC - MICROCOMPUTADORES S/A.'
+INNER JOIN venda ven ON cli.codcli = ven.codcli
+WHERE cli.nome LIKE 'PCTEC%'
 ORDER BY cli.nome DESC;
 
 -- 2
