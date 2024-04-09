@@ -686,8 +686,8 @@ ORDER BY cli.nome DESC;
 
 SELECT cliente.nome,
        venda.vencto
-FROM cliente,
-     venda
+FROM cliente
+INNER JOIN venda ON cliente.codcli = venda.codcli
 WHERE (EXTRACT(month
                FROM venda.vencto) = 11)
     AND (EXTRACT(year
@@ -699,8 +699,7 @@ ORDER BY venda.vencto;
 SELECT cliente.nome,
        venda.duplic,
        venda.vencto
-FROM cliente,
-     venda
+FROM cliente INNER JOIN venda ON cliente.codcli = venda.codcli
 WHERE (EXTRACT(month
                FROM venda.vencto) = 10)
 ORDER BY venda.vencto;
