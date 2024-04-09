@@ -18,7 +18,7 @@ if (isset($_GET['id_contato'])) {
             $stmt = $pdo->prepare('DELETE FROM contatos WHERE id_contato = ?');
             $stmt->execute([$_GET['id_contato']]);
             $msg = 'Contato Apagado com Sucesso!';
-            $button = '<a href="read.php" class="create-contact">Voltar</a>';
+            $button = '<a href="searchPedido.php" class="create-contact">Voltar</a>';
         } else {
             // O usuário clicou no botão "Não", redireciona de volta para a página de leitura
             header('Location: searchPedido.php');

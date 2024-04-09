@@ -732,7 +732,7 @@ ORDER BY vencidos DESC;
 SELECT cliente.nome,
        venda.duplic,
        venda.valor,
-       '10%' AS juros,
+       (venda.valor*0.1) AS juros,
        (venda.valor*1.1) AS valor_total
 FROM cliente
 INNER JOIN venda ON cliente.codcli = venda.codcli AND venda.vencto < '1999-12-31' 

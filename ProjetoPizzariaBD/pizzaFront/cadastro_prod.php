@@ -2,7 +2,6 @@
 require_once 'conectaBD_prod.php';
 // Definir o BD (e a tabela)
 // Conectar ao BD (com o PHP)
-
 if (!empty($_POST)) {
     // Está chegando dados por POST e então posso tentar inserir no banco
     // Obter as informações do formulário ($_POST)
@@ -35,3 +34,5 @@ if (!empty($_POST)) {
 }
 die();
     // Redirecionar para a página inicial (login) c/ mensagem erro/sucesso
+
+?>

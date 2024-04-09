@@ -18,19 +18,20 @@ include 'functions.php';
     <section class="main-cadastro">
         <div class="content update">
             <form action="cadastro_prod.php" method="POST">
-                <label for="cNome">Digite o nome do produto:</label>
-                <label for="cValor">Digite o valor do produto:</label>
-                <input type="text" name="cNome" id="cNome" placeholder="Digite seu nome" /><br />
-                <input type="text" name="cValor" id="cValor" placeholder="Digite o valor" /><br>
-                <label for="cCategoria">Digite a categoria do produto:</label>
-                <label for="cIngr">Digite os ingredientes do produto:</label>
-                <input type="text" name="cCategoria" id="cCategoria" placeholder="Digite a categoria" /><br>
+                <label for="cNome">Nome:</label>
+                <label for="cValor">Valor:</label>
+                <input type="text" name="cNome" id="cNome" placeholder="Digite o nome do produto" /><br />
+                <input type="text" name="cValor" id="cValor" placeholder="Digite o valor do produto" /><br>
+                <label for="cCategoria">Categoria:</label>
+                <label for="cIngr">Ingredientes:</label>
+                <input type="text" name="cCategoria" id="cCategoria" placeholder="Digite a categoria do produto" /><br>
                 <input type="text" name="cIngr" id="cIngr" placeholder="Digite os principais ingredientes" /><br>
-                <label for="cTamanho">Digite o tamanho do produto:</label>
-                <label for="cBorda">Digite a borda do produto:</label>
-                <input type="text" name="cTamanho" id="cTamanho" placeholder="Digite o tamanho" /><br>
-                <input type="text" name="cBorda" id="cBorda" placeholder="Digite a borda" /><br>
+                <label for="cTamanho">Tamanho:</label>
+                <label for="cBorda">Borda:</label>
+                <input type="text" name="cTamanho" id="cTamanho" placeholder="Digite o tamanho da pizza" /><br>
+                <input type="text" name="cBorda" id="cBorda" placeholder="Digite a borda da pizza" /><br>
                 <input type="submit" id="enviarDados"></input>
+                <a href="searchProdutos.php" class="search-contact">Ver pedidos</a>
             </form>
         </div>
     </section>
