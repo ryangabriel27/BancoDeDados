@@ -1,5 +1,5 @@
 <?php
-include 'functions.php';
+include '../functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -9,8 +9,8 @@ include 'functions.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizzaria</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="styleP.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/styleP.css">
 </head>
 
 <body>
@@ -31,7 +31,7 @@ include 'functions.php';
                 <input type="text" name="cTamanho" id="cTamanho" placeholder="Digite o tamanho da pizza" /><br>
                 <input type="text" name="cBorda" id="cBorda" placeholder="Digite a borda da pizza" /><br>
                 <input type="submit" id="enviarDados"></input>
-                <a href="searchProdutos.php" class="search-contact">Ver pedidos</a>
+                <a href="searchProdutos.php" class="search-contact">Ver produtos</a>
             </form>
         </div>
     </section>

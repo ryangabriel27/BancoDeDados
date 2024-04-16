@@ -1,5 +1,5 @@
 <?php
-include 'functions.php';
+include '../functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,8 +8,8 @@ include 'functions.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Clientes</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="styleP.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/styleP.css">
 </head>
 
 <body>
@@ -30,6 +30,7 @@ include 'functions.php';
                     <input type="text" name="cEndereco" id="cEndereco" placeholder="Digite seu endereço" /><br>
                     <input type="password" name="cSenha" id="cSenha" placeholder="Digite sua senha" /><br>
                     <input type="submit" id="enviarDados"></input>
+                    <a href="searchClientes.php" class="search-contact">Ver clientes</a>
                 </form>
             </div>
     </section>

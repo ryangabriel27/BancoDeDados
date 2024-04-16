@@ -1,5 +1,5 @@
 <?php
-include 'functions.php';
+include '../functions.php';
 // Conectar ao banco de dados PostgreSQL
 include 'conectaBD_prod.php';
 // Obter a página via solicitação GET (parâmetro URL: page), se não existir, defina a página como 1 por padrão
@@ -7,7 +7,6 @@ $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] :
 // Número de registros para mostrar em cada página
 $records_per_page = 5;
 
-// Verifica se foi submetido um formulário de pesquisa
 if (isset($_GET['search']) && isset($_GET['filtro'])) {
     $search = $_GET['search'];
     $filtro = $_GET['filtro'];
@@ -22,7 +21,6 @@ if (isset($_GET['search']) && isset($_GET['filtro'])) {
     $stmt = $pdo->query("SELECT * FROM produtos_pizzaria");
     $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
 // Obter o número total de produtos_pizzaria, isso é para determinar se deve haver um botão de próxima e anterior
 $num_contacts = $pdo->query('SELECT COUNT(*) FROM produtos_pizzaria')->fetchColumn();
 
@@ -33,9 +31,9 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM produtos_pizzaria')->fetchColu
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-    <link rel="stylesheet" href="styleP.css">
+    <link rel="stylesheet" href="../css/styleP.css">
 </head>
 <body>
 
@@ -44,9 +42,11 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM produtos_pizzaria')->fetchColu
     <form method="GET" action="searchProdutos.php">
         <input type="text" name="search" id="search" placeholder="Pesquisar" />
         <select name="filtro">
-            <option value="nome">Nome</option>
-            <option value="categoria">Categoria</option>
+            <option value="nome_produto">Nome</option>
             <option value="tamanho">Tamanho</option>
+            <option value="borda">Borda</option>
+            <option value="ingredientes">Ingredientes</option>
+            <option value="categoria_produto">Categoria</option>
         </select>
         <button type="submit" class="create-contact"><span><i class="fa-solid fa-magnifying-glass"></i>Buscar</span></button>
     </form>
@@ -72,8 +72,8 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM produtos_pizzaria')->fetchColu
                     <td><?= $contact['ingredientes'] ?></td>
                     <td><?= $contact['borda'] ?></td>
                     <td class="actions">
-                        <a href="updatePedido.php?id_produto=<?= $contact['id_produto'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                        <a href="deletePedido.php?id_produto=<?= $contact['id_produto'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                        <a href="updateProduto.php?id_produto=<?= $contact['id_produto'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                        <a href="deleteProduto.php?id_produto=<?= $contact['id_produto'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -81,10 +81,10 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM produtos_pizzaria')->fetchColu
     </table>
     <div class="pagination">
         <?php if ($page > 1) : ?>
-            <a href="readPedido.php?page=<?= $page - 1 ?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
+            <a href="searchProdutos.php?page=<?= $page - 1 ?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
         <?php endif; ?>
         <?php if ($page * $records_per_page < $num_contacts) : ?>
-            <a href="readPedido.php?page=<?= $page + 1 ?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
+            <a href="searchProdutos.php?page=<?= $page + 1 ?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
         <?php endif; ?>
     </div>
 </div>

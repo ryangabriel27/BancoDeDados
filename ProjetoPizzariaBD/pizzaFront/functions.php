@@ -27,7 +27,7 @@ function template_header($title)
 	<head>
 		<meta charset="utf-8">
 		<title>$title</title>
-		<link href="styleP.css" rel="stylesheet" type="text/css">
+		<link href="../css/styleP.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	</head>
 	<body>
@@ -47,22 +47,27 @@ function header2()
  <nav>
  <header>
      <div class="logo">
-         <img src="img/logoDouradaSemfundo.png" alt="">
+         <img src="../img/logoDouradaSemfundo.png" alt="">
      </div>
  </header>
 </nav>
 <section class="paginas">
- <a href="cadastroProduto.php">
+ <a href="../produtos/cadastroProduto.php">
      <div class="produtos">
          <span>PRODUTOS</span>
      </div>
  </a>
- <a href="cadastroClientes.php">
+ <a href="../funcionarios/readFuncionarios.php">
+     <div class="produtos">
+         <span>FUNCIONARIOS</span>
+     </div>
+ </a>
+ <a href="../clientes/cadastroClientes.php">
      <div class="cadastro">
          <span>CADASTRO</span>
      </div>
  </a>
- <a href="createPedido.php">
+ <a href="../pedidos/createPedido.php">
  <div class="pedido">
      <span>PEDIDO</span>
  </div>

@@ -18,7 +18,6 @@ try {
         $senha,
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
-    echo "Conectado no banco de dados!!!";
     $sql = "CREATE TABLE IF NOT EXISTS 
      clientes_pizzaria (
         id_cliente SERIAL PRIMARY KEY,
