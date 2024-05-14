@@ -1,0 +1,30 @@
+.abas {
+    width: 100%;
+    padding: 10em;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card-aba {
+    background-color: rgb(36, 36, 36);
+    color: white;
+    width: 13em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7em;
+    border-radius: 10px;
+    border: 1px solid rgb(180, 180, 180);
+}
+
+.card-aba:hover {
+    background-color: rgb(194, 194, 194);
+    color: rgb(36, 36, 36);
+    transform: scale(1.05);
+    transition: 0.4s;
+    border: 2px solid rgb(29, 29, 29);
+}
+
+.abas a {
+    text-decoration: none;
+}
