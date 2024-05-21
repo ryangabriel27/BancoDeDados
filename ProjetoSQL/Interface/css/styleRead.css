@@ -1,0 +1,60 @@
+
+.read table {
+    width: 100%;
+    padding-top: 30px;
+    border-collapse: collapse;
+}
+.read table thead {
+    background-color: rgb(36, 36, 36);
+    border-bottom: 1px solid  rgb(24, 24, 24);
+}
+.read table thead td {
+    padding: 10px;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 14px;
+}
+.read table tbody tr {
+    border-bottom: 1px solid #d3dae0;
+}
+.read table tbody tr:nth-child(even) {
+    background-color: #fbfcfc;
+}
+.read table tbody tr:hover {
+    background-color: #3a3a3a;
+}
+.read table tbody tr:hover td {
+    color: #FFFFFF;
+}
+.read table tbody tr:hover td:nth-child(1) {
+    color: #FFFFFF;
+}
+.read table tbody tr td {
+    padding: 10px;
+}
+.read table tbody tr td:nth-child(1) {
+    color: #324877;
+}
+.read table tbody tr td.actions {
+    padding: 8px;
+    text-align: right;
+}
+.read table tbody tr td.actions .edit, .read table tbody tr td.actions .trash {
+    display: inline-flex;
+    text-align: right;
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 10px 12px;
+}
+.read table tbody tr td.actions .trash {
+    background-color: #b73737;
+}
+.read table tbody tr td.actions .trash:hover {
+    background-color: #a33131;
+}
+.read table tbody tr td.actions .edit {
+    background-color: #2b2b2b;
+}
+.read table tbody tr td.actions .edit:hover {
+    background-color: #474747;
+}

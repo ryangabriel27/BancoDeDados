@@ -5,7 +5,7 @@ function pdo_connect_pgsql()
     $DATABASE_PORT = '5432';
     $DATABASE_USER = 'postgres';
     $DATABASE_PASS = 'postgres';
-    $DATABASE_NAME = 'turmabtarde';
+    $DATABASE_NAME = 'agencia_carros_b';
     try {
         $pdo = new PDO('pgsql:host=' . $DATABASE_HOST . ';port=' . $DATABASE_PORT . ';dbname=' . $DATABASE_NAME . ';user=' . $DATABASE_USER . ';password=' . $DATABASE_PASS);
         // Define o modo de erro para Exception para que os erros sejam lançados e possam ser capturados.
@@ -78,5 +78,13 @@ function template_footer()
         </nav>
         <p class="text-center">© 2024 DriveNation, Brasil</p>
         </footer>
+    EOT;
+}
+
+function voltar($href){
+    echo <<<EOT
+    <nav class="navbar">
+        <a href="$href"><i class="fas fa-arrow-left"></i> Voltar</a>
+    </nav>
     EOT;
 }

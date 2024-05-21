@@ -5,23 +5,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?=template_head2("Clientes")?>
+    <?=template_head2("Registro de Aluguel")?>
     <link rel="stylesheet" href="../css/styleIndex.css">
 </head>
 <body>
     <?=template_header2()?>
     <div class="abas">
-        <a href="cadastroCliente.php">
+        <a href="cadastroAluga.php">
         <div class="card-aba">
             <h3>Cadastrar</h3>
         </div>
         </a>
-        <a href="readClientes.php">
+        <a href="readAluga.php">
         <div class="card-aba">
             <h3>Listar</h3>
         </div>
         </a>
-        <a href="">
+        <a href="searchAluga.php">
         <div class="card-aba">
             <h3>Pesquisar</h3>
         </div>

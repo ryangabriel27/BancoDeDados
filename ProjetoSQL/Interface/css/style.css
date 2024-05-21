@@ -84,14 +84,28 @@ nav img {
     max-height: 100%;
 }
 
+.navbar {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+}
 
-.border{
+.navbar a {
+    text-decoration: none;
+    background-color: #333333;
+    color: white;
+    padding: 1em;
+    border-radius: 8px;
+}
+
+
+.border {
     background-color: rgb(32, 32, 32);
     height: 0.5vh;
     width: 100%;
 }
 
-footer{
+footer {
     margin-top: 21em;
     width: 100%;
     height: 10vh;
@@ -99,6 +113,6 @@ footer{
     background-color: #FFFFFF;
 }
 
-footer p{
+footer p {
     margin-top: 2em;
 }
