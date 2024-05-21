@@ -9,52 +9,42 @@ $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] :
 $records_per_page = 8;
 
 // Obter os valores dos filtros de data
-$data_inicio = isset($_GET['data_inicio']) ? $_GET['data_inicio'] : '';
-$data_fim = isset($_GET['data_fim']) ? $_GET['data_fim'] : '';
+$data_inicio = $_GET['data_inicio'] ?? '';
+$data_fim = $_GET['data_fim'] ?? '';
 
-// Preparar a instrução SQL e obter registros da tabela aluguel, com ou sem os filtros de data
+// Preparar a instrução SQL base
 $sql = 'SELECT * FROM aluga';
-$params = [];
-$conditions = [];
-
-if ($data_inicio) {
-    $conditions[] = 'data_inicio >= :data_inicio';
-    $params[':data_inicio'] = $data_inicio;
-}
-
-if ($data_fim) {
-    $conditions[] = 'data_fim <= :data_fim';
-    $params[':data_fim'] = $data_fim;
-}
-
-if ($conditions) {
-    $sql .= ' WHERE ' . implode(' AND ', $conditions);
-}
-
-$sql .= ' ORDER BY id_aluguel OFFSET :offset LIMIT :limit';
-
-$stmt = $pdo->prepare($sql);
-foreach ($params as $key => &$val) {
-    $stmt->bindValue($key, $val);
-}
-$stmt->bindValue(':offset', ($page - 1) * $records_per_page, PDO::PARAM_INT);
-$stmt->bindValue(':limit', $records_per_page, PDO::PARAM_INT);
-$stmt->execute();
-
-// Buscar os registros para exibi-los em nosso modelo.
-$alugueis = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Obter o número total de aluguéis, considerando ou não os filtros de data
 $count_sql = 'SELECT COUNT(*) FROM aluga';
-if ($conditions) {
+$params = [];
+$count_params = [];
+
+// Adicionar condições de filtro, se aplicáveis
+if ($data_inicio || $data_fim) {
+    $conditions = [];
+    if ($data_inicio) {
+        $conditions[] = 'data_inicio >= :data_inicio';
+        $params[':data_inicio'] = $data_inicio;
+        $count_params[':data_inicio'] = $data_inicio;
+    }
+    if ($data_fim) {
+        $conditions[] = 'data_fim <= :data_fim';
+        $params[':data_fim'] = $data_fim;
+        $count_params[':data_fim'] = $data_fim;
+    }
+    $sql .= ' WHERE ' . implode(' AND ', $conditions);
     $count_sql .= ' WHERE ' . implode(' AND ', $conditions);
 }
 
+$sql .= ' ORDER BY id_aluguel OFFSET :offset LIMIT :limit';
+$params[':offset'] = ($page - 1) * $records_per_page;
+$params[':limit'] = $records_per_page;
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+$alugueis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 $count_stmt = $pdo->prepare($count_sql);
-foreach ($params as $key => &$val) {
-    $count_stmt->bindValue($key, $val);
-}
-$count_stmt->execute();
+$count_stmt->execute($count_params);
 $num_alugueis = $count_stmt->fetchColumn();
 ?>
 
@@ -72,7 +62,7 @@ $num_alugueis = $count_stmt->fetchColumn();
 
 <body>
     <?= template_header2() ?>
-    <?= voltar("indexAluguel.php") ?>
+    <?= voltar("indexAluga.php") ?>
     <div class="content read">
         <form action="" method="get">
             <label for="data_inicio">Data Início:</label>
