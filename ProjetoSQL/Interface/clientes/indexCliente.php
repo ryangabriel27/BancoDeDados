@@ -21,7 +21,7 @@
             <h3>Listar</h3>
         </div>
         </a>
-        <a href="">
+        <a href="searchCliente.php">
         <div class="card-aba">
             <h3>Pesquisar</h3>
         </div>

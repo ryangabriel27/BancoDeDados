@@ -65,6 +65,7 @@ if (!empty($_POST)) {
                 <input type="submit" value="Cadastrar">
             </div>
         </form>
+        <p><?= $msg ?></p>
     </div>
 
     <?= template_footer() ?>

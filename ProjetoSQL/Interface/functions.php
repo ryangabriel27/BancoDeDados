@@ -44,10 +44,12 @@ function template_header()
 {
     echo <<<EOT
     <header>
+    <a href="index.php">
     <nav class="title">
         <img src="img/logo.png" alt="logo">
         <h1>DriveNation</h1>
     </nav>
+    </a>
     <nav class="border">
     <span>  </span>
     </nav>
@@ -58,10 +60,12 @@ function template_header2()
 {
     echo <<<EOT
     <header>
+    <a href="../index.php">
     <nav class="title">
         <img src="../img/logo.png" alt="logo">
         <h1>DriveNation</h1>
     </nav>
+    </a>
     <nav class="border">
     <span>  </span>
     </nav>

@@ -8,44 +8,29 @@ $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] :
 // Número de registros para mostrar em cada página
 $records_per_page = 8;
 
-// Obter os valores dos filtros de data
-$data_inicio = $_GET['data_inicio'] ?? '';
-$data_fim = $_GET['data_fim'] ?? '';
+$data_fim = '';
+$data_inicio = '';
 
-// Preparar a instrução SQL base
-$sql = 'SELECT * FROM aluga';
-$count_sql = 'SELECT COUNT(*) FROM aluga';
-$params = [];
-$count_params = [];
-
-// Adicionar condições de filtro, se aplicáveis
-if ($data_inicio || $data_fim) {
-    $conditions = [];
-    if ($data_inicio) {
-        $conditions[] = 'data_inicio >= :data_inicio';
-        $params[':data_inicio'] = $data_inicio;
-        $count_params[':data_inicio'] = $data_inicio;
-    }
-    if ($data_fim) {
-        $conditions[] = 'data_fim <= :data_fim';
-        $params[':data_fim'] = $data_fim;
-        $count_params[':data_fim'] = $data_fim;
-    }
-    $sql .= ' WHERE ' . implode(' AND ', $conditions);
-    $count_sql .= ' WHERE ' . implode(' AND ', $conditions);
+if (isset($_GET['data_inicio']) && isset($_GET['data_fim'])) {
+    $data_inicio = $_GET['data_inicio'];
+    $data_fim = $_GET['data_fim'];
+    $sql = 'SELECT * FROM aluga WHERE data_inicio >= :data_inicio AND data_fim <= :data_fim ORDER BY data_inicio OFFSET :offset LIMIT :limit';
+    $count_sql = 'SELECT COUNT(*) FROM aluga WHERE data_inicio >= :data_inicio AND data_fim <= :data_fim GROUP BY aluga.id_aluguel,aluga.data_inicio,aluga.data_fim ORDER BY data_inicio OFFSET :offset LIMIT :limit';
+} else {
+    $sql = 'SELECT * FROM aluga ORDER BY id_aluguel OFFSET :offset LIMIT :limit';
+    $count_sql = 'SELECT COUNT(*) FROM aluga ORDER BY id_aluguel OFFSET :offset LIMIT :limit';
 }
 
-$sql .= ' ORDER BY id_aluguel OFFSET :offset LIMIT :limit';
-$params[':offset'] = ($page - 1) * $records_per_page;
-$params[':limit'] = $records_per_page;
-
 $stmt = $pdo->prepare($sql);
-$stmt->execute($params);
-$alugueis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$count_stmt = $pdo->prepare($count_sql);
-$count_stmt->execute($count_params);
-$num_alugueis = $count_stmt->fetchColumn();
+if (isset($_GET['data_inicio']) && isset($_GET['data_fim'])) {
+    $stmt->bindParam(':data_inicio', $data_inicio);
+    $stmt->bindParam(':data_fim', $data_fim);
+}
+$stmt->bindValue(':offset', ($page - 1) * $records_per_page, PDO::PARAM_INT);
+$stmt->bindValue(':limit', $records_per_page, PDO::PARAM_INT);
+$stmt->execute();
+$alugueis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 
@@ -103,10 +88,10 @@ $num_alugueis = $count_stmt->fetchColumn();
         </table>
         <div class="pagination">
             <?php if ($page > 1) : ?>
-                <a href="readAluguel.php?page=<?= $page - 1 ?>&data_inicio=<?= urlencode(isset($_GET['data_inicio']) ? $_GET['data_inicio'] : '') ?>&data_fim=<?= urlencode(isset($_GET['data_fim']) ? $_GET['data_fim'] : '') ?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
+                <a href="searchAluga.php?page=<?= $page - 1 ?>&data_inicio=<?= urlencode(isset($_GET['data_inicio']) ? $_GET['data_inicio'] : '') ?>&data_fim=<?= urlencode(isset($_GET['data_fim']) ? $_GET['data_fim'] : '') ?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
             <?php endif; ?>
             <?php if ($page * $records_per_page < $num_alugueis) : ?>
-                <a href="readAluguel.php?page=<?= $page + 1 ?>&data_inicio=<?= urlencode(isset($_GET['data_inicio']) ? $_GET['data_inicio'] : '') ?>&data_fim=<?= urlencode(isset($_GET['data_fim']) ? $_GET['data_fim'] : '') ?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
+                <a href="searchAluga.php?page=<?= $page + 1 ?>&data_inicio=<?= urlencode(isset($_GET['data_inicio']) ? $_GET['data_inicio'] : '') ?>&data_fim=<?= urlencode(isset($_GET['data_fim']) ? $_GET['data_fim'] : '') ?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
             <?php endif; ?>
         </div>
     </div>

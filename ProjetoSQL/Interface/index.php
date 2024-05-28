@@ -35,9 +35,9 @@ include 'functions.php';
                 <h3>Agências</h3>
             </div>
         </a>
-        <a href="">
+        <a href="aluga/indexAluga.php">
             <div class="card-aba">
-                <h3>Vendas</h3>
+                <h3>Reg. de Aluguel</h3>
             </div>
         </a>
     </div>

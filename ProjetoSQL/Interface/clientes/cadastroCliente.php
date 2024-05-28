@@ -14,17 +14,17 @@ if (!empty($_POST)) {
     $cidade = isset($_POST['cidade']) ? $_POST['cidade'] : '';
     $estado = isset($_POST['estado']) ? $_POST['estado'] : '';
     $endereco = isset($_POST['endereco']) ? $_POST['endereco'] : '';
-    $id_pagamento = isset($_POST['id_pagamento']) ? $_POST['id_pagamento'] : '';
     // Insere um novo registro na tabela contacts
     try {
-        $stmt = $pdo->prepare('INSERT INTO clientes (nome, sobrenome, cnh, telefone, cidade, estado, endereco, id_pagamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-        $stmt->execute([$nome, $sobrenome, $cnh, $telefone, $cidade, $estado, $endereco, $id_pagamento]);
+        $stmt = $pdo->prepare('INSERT INTO clientes (nome, sobrenome, cnh, telefone, cidade, estado, endereco) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$nome, $sobrenome, $cnh, $telefone, $cidade, $estado, $endereco]);
+        // Mensagem de saída
+    $msg = 'Cliente cadastrado com Sucesso!';
     } catch (Exception $e) {
         $msg = $e;
     }
 
-    // Mensagem de saída
-    $msg = 'Cliente cadastrado com Sucesso!';
+    
 }
 ?>
 
@@ -79,6 +79,7 @@ if (!empty($_POST)) {
                 </a>
             </div>
         </form>
+        <p><?= $msg ?></p>
     </div>
     <?= template_footer() ?>
 </body>

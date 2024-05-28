@@ -80,6 +80,11 @@ header nav {
     background-color: #FFFFFF;
 }
 
+header a{
+    text-decoration: none;
+    color: #333333;
+}
+
 nav img {
     max-height: 100%;
 }
