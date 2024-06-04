@@ -14,11 +14,15 @@ $data_inicio = '';
 if (isset($_GET['data_inicio']) && isset($_GET['data_fim'])) {
     $data_inicio = $_GET['data_inicio'];
     $data_fim = $_GET['data_fim'];
-    $sql = 'SELECT * FROM aluga WHERE data_inicio >= :data_inicio AND data_fim <= :data_fim ORDER BY data_inicio OFFSET :offset LIMIT :limit';
-    $count_sql = 'SELECT COUNT(*) FROM aluga WHERE data_inicio >= :data_inicio AND data_fim <= :data_fim GROUP BY aluga.id_aluguel,aluga.data_inicio,aluga.data_fim ORDER BY data_inicio OFFSET :offset LIMIT :limit';
+    $sql = 'SELECT aluga.id_aluguel, clientes.nome AS cliente_nome, clientes.sobrenome AS cliente_sobrenome, carros.marca, carros.modelo, carros.placa, aluga.data_inicio, aluga.data_fim FROM aluga 
+    INNER JOIN clientes ON aluga.id_cliente = clientes.id_cliente 
+    INNER JOIN carros ON aluga.id_carro = carros.id_carro
+    WHERE data_inicio >= :data_inicio AND data_fim <= :data_fim ORDER BY data_inicio OFFSET :offset LIMIT :limit';
 } else {
-    $sql = 'SELECT * FROM aluga ORDER BY id_aluguel OFFSET :offset LIMIT :limit';
-    $count_sql = 'SELECT COUNT(*) FROM aluga ORDER BY id_aluguel OFFSET :offset LIMIT :limit';
+    $sql = 'SELECT aluga.id_aluguel, clientes.nome AS cliente_nome, clientes.sobrenome AS cliente_sobrenome, carros.marca, carros.modelo, carros.placa, aluga.data_inicio, aluga.data_fim FROM aluga 
+    INNER JOIN clientes ON aluga.id_cliente = clientes.id_cliente 
+    INNER JOIN carros ON aluga.id_carro = carros.id_carro
+    ORDER BY id_aluguel OFFSET :offset LIMIT :limit';
 }
 
 $stmt = $pdo->prepare($sql);
@@ -31,6 +35,9 @@ $stmt->bindValue(':offset', ($page - 1) * $records_per_page, PDO::PARAM_INT);
 $stmt->bindValue(':limit', $records_per_page, PDO::PARAM_INT);
 $stmt->execute();
 $alugueis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Obter o número total de registros, isso é para determinar se deve haver um botão de próxima e anterior
+$num_alugueis = $pdo->query('SELECT COUNT(*) FROM aluga')->fetchColumn();
 ?>
 
 
@@ -60,12 +67,14 @@ $alugueis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <table>
             <thead>
                 <tr>
-                    <td>Id Aluguel</td>
-                    <td>Data Início</td>
-                    <td>Data Fim</td>
-                    <td>Valor Total</td>
-                    <td>Id Carro</td>
-                    <td>Id Cliente</td>
+                    <td>Id aluguel</td>
+                    <td>Nome do cliente</td>
+                    <td>Sobrenome do cliente</td>
+                    <td>Marca</td>
+                    <td>Modelo</td>
+                    <td>Placa</td>
+                    <td>Data de Início</td>
+                    <td>Data de Fim</td>
                     <td></td>
                 </tr>
             </thead>
@@ -73,14 +82,16 @@ $alugueis = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($alugueis as $aluguel) : ?>
                     <tr>
                         <td><?= $aluguel['id_aluguel'] ?></td>
+                        <td><?= $aluguel['cliente_nome'] ?></td>
+                        <td><?= $aluguel['cliente_sobrenome'] ?></td>
+                        <td><?= $aluguel['marca'] ?></td>
+                        <td><?= $aluguel['modelo'] ?></td>
+                        <td><?= $aluguel['placa'] ?></td>
                         <td><?= $aluguel['data_inicio'] ?></td>
                         <td><?= $aluguel['data_fim'] ?></td>
-                        <td><?= $aluguel['valor_total'] ?></td>
-                        <td><?= $aluguel['id_carro'] ?></td>
-                        <td><?= $aluguel['id_cliente'] ?></td>
                         <td class="actions">
-                            <a href="updateAluguel.php?id_aluguel=<?= $aluguel['id_aluguel'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                            <a href="deleteAluguel.php?id_aluguel=<?= $aluguel['id_aluguel'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                            <a href="updateAluga.php?id_aluguel=<?= $aluguel['id_aluguel'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                            <a href="deleteAluga.php?id_aluguel=<?= $aluguel['id_aluguel'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

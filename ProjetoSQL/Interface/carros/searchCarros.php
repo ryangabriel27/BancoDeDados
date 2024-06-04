@@ -57,6 +57,7 @@ $num_contacts = $count_stmt->fetchColumn();
                 <option value="">Todos</option>
                 <option value="DISPONIVEL" <?= isset($_GET['disponibilidade']) && $_GET['disponibilidade'] == 'DISPONIVEL' ? 'selected' : '' ?>>Disponível</option>
                 <option value="ALUGADO" <?= isset($_GET['disponibilidade']) && $_GET['disponibilidade'] == 'ALUGADO' ? 'selected' : '' ?>>Alugado</option>
+                <option value="RESERVADO" <?= isset($_GET['disponibilidade']) && $_GET['disponibilidade'] == 'RESERVADO' ? 'selected' : '' ?>>Reservado</option>
             </select>
             <input type="submit" value="Filtrar">
         </form>
@@ -86,7 +87,6 @@ $num_contacts = $count_stmt->fetchColumn();
                         <td><?= $contact['disponibilidade'] ?></td>
                         <td class="actions">
                             <a href="updateCarro.php?id_carro=<?= $contact['id_carro'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                            <a href="deleteCarro.php?id_carro=<?= $contact['id_carro'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

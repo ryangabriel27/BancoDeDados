@@ -30,9 +30,9 @@ include 'functions.php';
                 <h3>Clientes</h3>
             </div>
         </a>
-        <a href="">
+        <a href="dashboard/indexDash.php">
             <div class="card-aba">
-                <h3>Agências</h3>
+                <h3>Dashboard</h3>
             </div>
         </a>
         <a href="aluga/indexAluga.php">
