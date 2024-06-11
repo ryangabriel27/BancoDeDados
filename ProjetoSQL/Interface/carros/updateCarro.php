@@ -58,8 +58,8 @@ if (isset($_GET['id_carro'])) {
                 <label for="modelo">Modelo:</label>
             </div>
             <div class="form-group">
-                <input type="text" id="marca" name="marca" value="<?= $contatos['marca'] ?>" required>
-                <input type="text" id="modelo" name="modelo" value="<?= $contatos['modelo'] ?>" required>
+                <input type="text" id="marca" name="marca" value="<?= $contatos['marca'] ?>" required readonly>
+                <input type="text" id="modelo" name="modelo" value="<?= $contatos['modelo'] ?>" required readonly>
             </div>
             <div class="form-group">
                 <label for="placa">Placa:</label>

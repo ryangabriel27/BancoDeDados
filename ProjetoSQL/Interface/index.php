@@ -14,7 +14,7 @@ include 'functions.php';
 <body>
     <?= template_header() ?>
     <div class="abas">
-        <a href="">
+        <a href="funcionarios/indexFuncionario.php">
             <div class="card-aba">
                 <h3>Funcionarios</h3>
             </div>

@@ -1,9 +1,11 @@
 <!-- 
-SELECT clientes.nome, clientes.sobrenome ,COUNT(*) AS n_carros_alugados FROM aluga
+SELECT clientes.nome, clientes.sobrenome, COUNT(*) AS n_carros_alugados 
+FROM aluga
 INNER JOIN clientes ON aluga.id_cliente = clientes.id_cliente 
 INNER JOIN carros ON aluga.id_carro = carros.id_carro
 GROUP BY clientes.nome, clientes.sobrenome
-ORDER BY n_carros_alugados -->
+HAVING COUNT(*) > 1
+ORDER BY n_carros_alugados DESC -->
 
 <?php
 include '../functions.php';
@@ -16,11 +18,13 @@ $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] :
 $records_per_page = 8;
 
 // Preparar a instrução SQL e obter registros da tabela contacts, LIMIT irá determinar a página
-$stmt = $pdo->prepare('SELECT clientes.nome, clientes.sobrenome ,COUNT(*) AS n_carros_alugados FROM aluga
-                        INNER JOIN clientes ON aluga.id_cliente = clientes.id_cliente 
-                        INNER JOIN carros ON aluga.id_carro = carros.id_carro
-                        GROUP BY clientes.nome, clientes.sobrenome
-                        ORDER BY n_carros_alugados DESC OFFSET :offset LIMIT :limit');
+$stmt = $pdo->prepare('SELECT clientes.nome, clientes.sobrenome, COUNT(*) AS n_carros_alugados 
+FROM aluga
+INNER JOIN clientes ON aluga.id_cliente = clientes.id_cliente 
+INNER JOIN carros ON aluga.id_carro = carros.id_carro
+GROUP BY clientes.nome, clientes.sobrenome
+HAVING COUNT(*) > 1
+ORDER BY n_carros_alugados DESC OFFSET :offset LIMIT :limit');
 $stmt->bindValue(':offset', ($page - 1) * $records_per_page, PDO::PARAM_INT);
 $stmt->bindValue(':limit', $records_per_page, PDO::PARAM_INT);
 $stmt->execute();
@@ -76,7 +80,7 @@ INNER JOIN carros ON aluga.id_carro = carros.id_carro ')->fetchColumn();
             <?php endif; ?>
         </div>
     </div>
-    
+
     <?= template_footer() ?>
 </body>
 

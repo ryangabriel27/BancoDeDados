@@ -9,7 +9,7 @@ $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] :
 $records_per_page = 10;
 
 // Preparar a instrução SQL e obter registros da tabela clientes com os carros alugados
-$stmt = $pdo->prepare('SELECT clientes.nome AS cliente_nome, clientes.sobrenome AS cliente_sobrenome, carros.marca, carros.modelo, carros.placa, aluga.data_inicio, aluga.data_fim 
+$stmt = $pdo->prepare('SELECT aluga.id_aluguel, clientes.nome AS cliente_nome, clientes.sobrenome AS cliente_sobrenome, carros.marca, carros.modelo, carros.placa, aluga.data_inicio, aluga.data_fim 
                         FROM aluga 
                         INNER JOIN clientes ON aluga.id_cliente = clientes.id_cliente 
                         INNER JOIN carros ON aluga.id_carro = carros.id_carro
@@ -50,6 +50,7 @@ $num_records = $pdo->query('SELECT COUNT(*) FROM aluga')->fetchColumn();
                     <td>Placa</td>
                     <td>Data de Início</td>
                     <td>Data de Fim</td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -62,6 +63,10 @@ $num_records = $pdo->query('SELECT COUNT(*) FROM aluga')->fetchColumn();
                         <td><?= $aluguel['placa'] ?></td>
                         <td><?= $aluguel['data_inicio'] ?></td>
                         <td><?= $aluguel['data_fim'] ?></td>
+                        <td class="actions">
+                            <a href="updateAluga.php?id_aluguel=<?= $aluguel['id_aluguel'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                            <a href="deleteAluga.php?id_aluguel=<?= $aluguel['id_aluguel'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

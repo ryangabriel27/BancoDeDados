@@ -75,7 +75,6 @@ $num_alugueis = $pdo->query('SELECT COUNT(*) FROM aluga')->fetchColumn();
                     <td>Placa</td>
                     <td>Data de Início</td>
                     <td>Data de Fim</td>
-                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -89,10 +88,6 @@ $num_alugueis = $pdo->query('SELECT COUNT(*) FROM aluga')->fetchColumn();
                         <td><?= $aluguel['placa'] ?></td>
                         <td><?= $aluguel['data_inicio'] ?></td>
                         <td><?= $aluguel['data_fim'] ?></td>
-                        <td class="actions">
-                            <a href="updateAluga.php?id_aluguel=<?= $aluguel['id_aluguel'] ?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                            <a href="deleteAluga.php?id_aluguel=<?= $aluguel['id_aluguel'] ?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
-                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

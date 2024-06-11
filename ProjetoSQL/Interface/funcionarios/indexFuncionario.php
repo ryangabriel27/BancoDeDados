@@ -5,25 +5,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?=template_head2("Registro de Aluguel")?>
+    <?=template_head2("Funcionarios")?>
     <link rel="stylesheet" href="../css/styleIndex.css">
 </head>
 <body>
     <?=template_header2()?>
     <div class="abas">
-        <a href="createAluga.php">
+        <a href="createFuncionario.php">
         <div class="card-aba">
             <h3>Cadastrar</h3>
         </div>
         </a>
-        <a href="readAluga.php">
+        <a href="readFuncionario.php">
         <div class="card-aba">
             <h3>Listar</h3>
-        </div>
-        </a>
-        <a href="searchAluga.php">
-        <div class="card-aba">
-            <h3>Pesquisar</h3>
         </div>
         </a>
     </div>
