@@ -8,10 +8,11 @@
 .card-aba {
     background-color: rgb(36, 36, 36);
     color: white;
-    width: 13em;
+    width: 15em;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     height: 7em;
     border-radius: 10px;
     border: 1px solid rgb(180, 180, 180);
@@ -36,6 +37,18 @@
     margin-top: 2rem;
 }
 
-.money {
+.money{
+    background-color: rgb(197, 197, 197);
     color: rgb(28, 128, 28);
+    border: 1px solid white;
+    box-shadow: 0px 12px 24px 0px rgba(0,0,0,0.1);
+    padding: 0.2em;
+    border-radius: 8px;
+}
+
+.infos{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100%;
 }

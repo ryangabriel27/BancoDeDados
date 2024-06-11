@@ -9,12 +9,17 @@ $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] :
 $records_per_page = 8;
 
 // Preparar a instrução SQL e obter registros da tabela contacts, LIMIT irá determinar a página
-$stmt = $pdo->prepare('SELECT SUM(valor_total) AS receita_total FROM aluga OFFSET :offset LIMIT :limit');
-$stmt->bindValue(':offset', ($page - 1) * $records_per_page, PDO::PARAM_INT);
-$stmt->bindValue(':limit', $records_per_page, PDO::PARAM_INT);
-$stmt->execute();
+$stmt1 = $pdo->prepare('SELECT SUM(valor_total) AS receita_total FROM aluga OFFSET :offset LIMIT :limit');
+$stmt1->bindValue(':offset', ($page - 1) * $records_per_page, PDO::PARAM_INT);
+$stmt1->bindValue(':limit', $records_per_page, PDO::PARAM_INT);
+$stmt1->execute();
 // Buscar os registros para exibi-los em nosso modelo.
-$receita = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$receita = $stmt1->fetchAll(PDO::FETCH_ASSOC);;
+
+// Preparar a instrução SQL e obter registros da tabela contacts, LIMIT irá determinar a página
+$stmt2 = $pdo->query('SELECT AVG(EXTRACT(DAY FROM data_fim) - EXTRACT(DAY FROM data_inicio)) AS media_dias_alugado FROM aluga');
+$media = $stmt2->fetch(PDO::FETCH_ASSOC);
+
 
 ?>
 
@@ -28,13 +33,19 @@ $receita = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <?= template_header2() ?>
-    <div class="receita">
-            <h3 class="archivo-black-regular">Receita total da locadora</h3>
+    <div class="infos">
+        <div class="receita">
+            <h3 class="archivo-black-regular">Receita total da locadora:</h3>
             <?php foreach ($receita as $row) : ?>
                 <h1 class="money archivo-black-regular">R$ <?= $row['receita_total'] ?></h1>
             <?php endforeach; ?>
         </div>
+        <div class="receita">
+            <h3 class="archivo-black-regular">Média de dias que um carro fica alugado:</h3>
+            <h1 class="money archivo-black-regular"><?= $media['media_dias_alugado'] ?> dias</h1>
+        </div>
     </div>
+
     <div class="abas">
         <a href="clientesDash.php">
             <div class="card-aba">

@@ -3,6 +3,7 @@ include '../functions.php';
 $pdo = pdo_connect_pgsql();
 $msg = '';
 
+$agencias = $pdo->query('SELECT num_agencia, cidade FROM agencia');
 if (isset($_GET['id_funcionario'])) {
     if (!empty($_POST)) {
         $nome = isset($_POST['nome']) ? $_POST['nome'] : '';
@@ -61,7 +62,12 @@ if (isset($_GET['id_funcionario'])) {
             </div>
             <div class="form-group">
                 <input type="number" id="salario" name="salario" value="<?= $funcionario['salario_funcionario'] ?>" required>
-                <input type="text" id="num_agencia" name="num_agencia" value="<?= $funcionario['num_agencia'] ?>" required>
+                <select name="num_agencia" id="num_agencia" required>
+                    <option value="">Selecione uma agência</option>
+                    <?php foreach ($agencias as $agencia) : ?>
+                        <option value="<?= $agencia['num_agencia'] ?>"><?= $agencia['num_agencia'] . ' - ' . $agencia['cidade'] ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Atualizar">

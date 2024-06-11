@@ -70,6 +70,7 @@ if (!empty($_POST)) {
             <div class="form-group">
                 <select name="disponibilidade" id="disponibilidade" required>
                     <option value="DISPONIVEL">DISPONIVEL</option>
+                    <option value="ALUGADO">ALUGADO</option>
                     <option value="RESERVADO">RESERVADO</option>
                 </select>
                 <select name="status" id="status" required>
